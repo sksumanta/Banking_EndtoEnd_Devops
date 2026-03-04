@@ -95,6 +95,7 @@ git push origin developer
 
 pipeline {
     agent any
+	
     environment {
         DOCKER_HUB = "yourdockerhub"
         IMAGE_NAME = "deposit-service"
