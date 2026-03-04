@@ -71,9 +71,9 @@ Now we can access the modules / functionality from the url
 		Events   Just the push event
 	Click Add webhook
 	Go to Jenkins Dashboard  Click New Item  Enter name   select Pipeline  OK
-	Now Configure Pipeline Job  Add repo URL (https://github.com/<your-username>/dep osit-service.git) 
+	Now Configure Pipeline Job  Add repo URL (https://github.com/<your-username>/deposit-service.git) 
 	Under "Build Triggers"   GitHub hook trigger for GITScm polling 
-Under "Pipeline"  Choose  Pipeline script from SCM   SCM  is Git   Repository URL (https://github.com/<your-username>/dep osit-service.git) --> Branch is */developer  Script Path is Jenkinsfile
+Under "Pipeline"  Choose  Pipeline script from SCM   SCM  is Git   Repository URL (https://github.com/<your-username>/deposit-service.git) --> Branch is */developer  Script Path is Jenkinsfile
 
 Note Jenkins file should be in your branch
 git add Jenkinsfile
