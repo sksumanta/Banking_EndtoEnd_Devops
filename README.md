@@ -48,7 +48,8 @@ Now we can access the modules / functionality from the url
 # =============================
 # Phase 1: Project Setup & Source Code Management
 • Initialize Git repository for each microservice.
-	 
+ ![push_code_to_git](image_folder/push_code_to_git.png)
+ 
 • Create remote repository.
 	git remote add origin https://github.com/<your-username>/deposit-service.git
 git branch -M main
@@ -73,6 +74,7 @@ git add Jenkinsfile
 git commit -m "Add Jenkins pipeline"
 git push origin developer
 
+![push_code_to_git_2](image_folder/push_code_to_git_2.png)
      
 # Phase 2: Build Automation
 • Configure Maven for automated build of Spring Boot applications.
