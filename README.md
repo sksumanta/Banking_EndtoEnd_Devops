@@ -27,7 +27,7 @@ Tomcat11
 
 # Manual test the Source code is OK
  
-
+![Maualtest_1](image_folder/manualtest_1.png)
 
 # How to test the code is running on Tomcat
 Use the command   “ mvn  clean package ”   it will create the war file as mentioned in the pom.xml
