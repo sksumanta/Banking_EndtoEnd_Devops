@@ -90,11 +90,11 @@ git push origin developer
  
 # Phase 3: Containerization
 • Create Docker images using Dockerfiles.
+
 • Push images to a central repository (e.g., Docker Hub or GitHub Container Registry).
 
 pipeline {
     agent any
-
     environment {
         DOCKER_HUB = "yourdockerhub"
         IMAGE_NAME = "deposit-service"
