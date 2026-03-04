@@ -32,7 +32,7 @@ Tomcat11
 # How to test the code is running on Tomcat
 Use the command   “ mvn  clean package ”   it will create the war file as mentioned in the pom.xml
 
- 
+ ![maven_build_1](image_folder/maven_build_1.png)
 
 Now copy the war files from the target directory and then paste it in  “ webapps ”  folder of tomcat
 EX=>
