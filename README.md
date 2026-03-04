@@ -8,7 +8,7 @@ Gain experience with Docker, Kubernetes, Ansible, and Jenkins
 Learn to integrate automated testing and monitoring in a DevOps pipeline
 Understand real-world banking application deployment challenges
 # Flow Diagram
- 
+ flow_diagram.png
 # Project Flow
 Developer commits code → triggers CI/CD pipeline
 Maven builds & tests → Docker image built
