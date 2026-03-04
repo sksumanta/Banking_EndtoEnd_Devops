@@ -36,16 +36,13 @@ Use the command   “ mvn  clean package ”   it will create the war file as me
 
 Now copy the war files from the target directory and then paste it in  “ webapps ”  folder of tomcat
 EX=>
- 
+![deploy_build_maually_1](image_folder/deploy_build_maually_1.png)
 Start tomcat service and open tomcat on http://localhost:8080/ 
 Now we can see the packages has been extracted in Tomcat’s webapps folder.
- 
+![deploy_build_maually_2](image_folder/deploy_build_maually_2.png)
+
 Now we can access the modules / functionality from the url
- 
-
-
-
-
+![deploy_build_maually_3](image_folder/deploy_build_maually_3.png)
 
 # CI-CD STEPS
 # =============================
