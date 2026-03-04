@@ -52,13 +52,18 @@ Now we can access the modules / functionality from the url
  ![push_code_to_git](image_folder/push_code_to_git.png)
  
 • Create remote repository.
+
 	git remote add origin https://github.com/<your-username>/deposit-service.git
     git branch -M main
     git push -u origin main
+	
 • Establish branching strategy (e.g., feature, develop, main).
+
 	git checkout -b developer  #=========> Create developer branch
 	git push -u origin developer
+	
 • Set up GitHub Actions/Jenkins webhook triggers for CI pipeline.
+
 	Manage Jenkins → Manage Plugins  Install (Git plugin , GitHub plugin , Pipeline , GitHub Integration Plugin)
 	Go to GitHub repository (deposit-service)  setting  webhooks  Add webhook 
 		Payload URL  http://<your-jenkins-server>:8080/github-webhook/
