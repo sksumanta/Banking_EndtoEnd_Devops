@@ -158,14 +158,14 @@ pipeline {
 
 # Phase 5: CI/CD Pipeline Setup
 • Configure Jenkinsfile or GitHub Actions Workflow:
-  i. Checkout Code
-  ii. Build with Maven
-  iii. Run Unit Tests
-  iv. Build Docker Image
-  v. Push Image to Registry
-  vi. Deploy to Kubernetes Cluster
-  vii. Run Selenium Integration Tests
-  viii. Promote build to next environment (UAT → Production)
+i. Checkout Code
+ii. Build with Maven
+iii. Run Unit Tests
+iv. Build Docker Image
+v. Push Image to Registry
+vi. Deploy to Kubernetes Cluster
+vii. Run Selenium Integration Tests
+viii. Promote build to next environment (UAT → Production)
 
 # Phase 6: Testing Automation
 • Use Selenium to test the integration between services.
