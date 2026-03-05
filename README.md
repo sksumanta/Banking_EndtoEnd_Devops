@@ -94,7 +94,6 @@ git push origin developer
 |Verify	|mvn verify		|Run checks on package                       |
 |Install	|mvn install 	|Install package to local repository     |
 |Deploy	|mvn deploy		|Deploy to remote repository                 |
-																	 |
 	
 • Generate Dockerfiles for each microservice.
  ![docker_build](image_folder/docker_build.PNG)
