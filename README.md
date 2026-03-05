@@ -48,21 +48,21 @@ Now we can access the modules / functionality from the url
 # =============================
 # Phase 1: Project Setup & Source Code Management
 
-• Initialize Git repository for each microservice.
+- Initialize Git repository for each microservice.
  ![push_code_to_git](image_folder/push_code_to_git.png)
  
-• Create remote repository.
+- Create remote repository.
 
 	git remote add origin https://github.com/<your-username>/deposit-service.git
     git branch -M main
     git push -u origin main
 	
-• Establish branching strategy (e.g., feature, develop, main).
+- Establish branching strategy (e.g., feature, develop, main).
 
 	git checkout -b developer  #=========> Create developer branch
 	git push -u origin developer
 	
-• Set up GitHub Actions/Jenkins webhook triggers for CI pipeline.
+- Set up GitHub Actions/Jenkins webhook triggers for CI pipeline.
 
 	Manage Jenkins → Manage Plugins  Install (Git plugin , GitHub plugin , Pipeline , GitHub Integration Plugin)
 	Go to GitHub repository (deposit-service)  setting  webhooks  Add webhook 
@@ -83,8 +83,8 @@ git push origin developer
 ![push_code_to_git_2](image_folder/push_code_to_git_2.png)
   
 # Phase 2: Build Automation
-• Configure Maven for automated build of Spring Boot applications.
-```Use pom.xml to create build in maven
+- Configure Maven for automated build of Spring Boot applications.
+&nbsp;&nbsp;&nbsp;&nbsp;Use pom.xml to create build in maven
 |Phase	|Command		|Purpose                                     |
 |---------------|--------------------------------|-------------------|
 |Validate|mvn validate	|Validate project structure                  |
@@ -95,74 +95,73 @@ git push origin developer
 |Install	|mvn install 	|Install package to local repository     |
 |Deploy	|mvn deploy		|Deploy to remote repository                 |
 	
-• Generate Dockerfiles for each microservice.
+- Generate Dockerfiles for each microservice.
  ![docker_build](image_folder/docker_build.PNG)
- Using this Dockerfile we can avoids committing .jar/.war files to any repository.
- The .war/.jar files are created automatically during the build process using Apache Maven or Gradle.
- It help to manage dependencies via tools (Maven/Gradle) instead of storing binaries in the repo.
+ &nbsp;&nbsp;&nbsp;&nbsp;Using this Dockerfile we can avoids committing .jar/.war files to any repository.
+ &nbsp;&nbsp;&nbsp;&nbsp;The .war/.jar files are created automatically during the build process using Apache Maven or Gradle.
+ &nbsp;&nbsp;&nbsp;&nbsp;It help to manage dependencies via tools (Maven/Gradle) instead of storing binaries in the repo.
  
 # Phase 3: Containerization
-• Create Docker images using Dockerfiles.
+- Create Docker images using Dockerfiles.
 
-• Push images to a central repository (e.g., Docker Hub or GitHub Container Registry).
-
+- Push images to a central repository (e.g., Docker Hub or GitHub Container Registry).
 pipeline {
     agent any
-	
-	environment {
+
+    environment {
         DOCKER_HUB = "yourdockerhub"
         IMAGE_NAME = "deposit-service"
         IMAGE_TAG = "${BUILD_NUMBER}"
     }
 
-    tools {
-        maven 'Maven-3.9'
-        jdk 'JDK-17'
-    }
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-        stage('Maven Build') {
-            steps {
-                sh 'mvn clean package -DskipTests'
-            }
-        }
+
         stage('Docker Build') {
             steps {
-                sh 'docker build -t $DOCKER_HUB/$IMAGE_NAME:$IMAGE_TAG .'
+                sh 'docker build -t $DOCKER_HUB/$IMAGE_NAME:$IMAGE_TAG -f deposit-service/Dockerfile deposit-service'
+				// -t $DOCKER_HUB/$IMAGE_NAME:$IMAGE_TAG → the image name and tag.
+				//-f deposit-service/Dockerfile → explicitly points to the Dockerfile.
+				//deposit-service → build context, i.e., the folder that Docker can see and copy files from.
             }
         }
+
         stage('Docker Login') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds',
-                        usernameVariable: 'USERNAME',
-                        passwordVariable: 'PASSWORD')]) {
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-creds',
+                    usernameVariable: 'USERNAME',
+                    passwordVariable: 'PASSWORD'
+                )]) {
                     sh 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
                 }
             }
         }
+
         stage('Push Image') {
             steps {
                 sh 'docker push $DOCKER_HUB/$IMAGE_NAME:$IMAGE_TAG'
             }
         }
-        stage('Deploy') {
+
+        stage('Deploy Container') {
             steps {
-                sh """
+                sh '''
                 docker stop deposit-service || true
                 docker rm deposit-service || true
                 docker run -d -p 8081:8081 \
                 --name deposit-service \
                 $DOCKER_HUB/$IMAGE_NAME:$IMAGE_TAG
-                """
+                '''
             }
         }
     }
 }
-
 # Phase 4: Infrastructure Automation
 • Use Ansible to:
   - Install Docker, Kubernetes, and dependencies on servers.
