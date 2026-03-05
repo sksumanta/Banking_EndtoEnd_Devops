@@ -77,7 +77,8 @@ Now we can access the modules / functionality from the url
 	Go to Jenkins Dashboard  Click New Item  Enter name   select Pipeline  OK
 	Now Configure Pipeline Job  Add repo URL (https://github.com/<your-username>/deposit-service.git) 
 	Under "Build Triggers"   GitHub hook trigger for GITScm polling 
-Under "Pipeline"  Choose  Pipeline script from SCM   SCM  is Git   Repository URL (https://github.com/<your-username>/deposit-service.git) --> Branch is */developer  Script Path is Jenkinsfile
+    Under "Pipeline"  Choose  Pipeline script from SCM   SCM  is Git   Repository URL
+    (https://github.com/<your-username>/deposit-service.git) --> Branch is */developer  Script Path is Jenkinsfile
 
 Note Jenkins file should be in your branch
 git add Jenkinsfile
@@ -102,10 +103,11 @@ git push origin developer
 	
 - Generate Dockerfiles for each microservice.
  ![docker_build](image_folder/docker_build.PNG)
+```
  &nbsp;&nbsp;&nbsp;&nbsp;Using this Dockerfile we can avoids committing .jar/.war files to any repository.
  &nbsp;&nbsp;&nbsp;&nbsp;The .war/.jar files are created automatically during the build process using Apache Maven or Gradle.
  &nbsp;&nbsp;&nbsp;&nbsp;It help to manage dependencies via tools (Maven/Gradle) instead of storing binaries in the repo.
- 
+ ```
 # Phase 3: Containerization
 - Create Docker images using Dockerfiles.
 
