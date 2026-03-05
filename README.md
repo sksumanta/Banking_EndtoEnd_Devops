@@ -67,7 +67,7 @@ Now we can access the modules / functionality from the url
 	git push -u origin developer
 	
 - Set up GitHub Actions/Jenkins webhook triggers for CI pipeline.
-
+```
 	Manage Jenkins → Manage Plugins  Install (Git plugin , GitHub plugin , Pipeline , GitHub Integration Plugin)
 	Go to GitHub repository (deposit-service)  setting  webhooks  Add webhook 
 		Payload URL  http://<your-jenkins-server>:8080/github-webhook/
@@ -83,7 +83,7 @@ Note Jenkins file should be in your branch
 git add Jenkinsfile
 git commit -m "Add Jenkins pipeline"
 git push origin developer
-
+```
 ![push_code_to_git_2](image_folder/push_code_to_git_2.png)
   
 # Phase 2: Build Automation
