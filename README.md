@@ -2,14 +2,17 @@
 This is a sample banking end to end project using jenkins, git , maven , docker , ansible , k8s , terraform 
 
 # Learning Outcomes
+```
 Understand the microservices architecture
 Learn how to automate builds, tests, and deployments using CI/CD
 Gain experience with Docker, Kubernetes, Ansible, and Jenkins
 Learn to integrate automated testing and monitoring in a DevOps pipeline
 Understand real-world banking application deployment challenges
+```
 # Flow Diagram
  ![Flow Diagram](image_folder/flow_diagram.png)
 # Project Flow
+```
 Developer commits code → triggers CI/CD pipeline
 Maven builds & tests → Docker image built
 Image pushed to registry
@@ -17,14 +20,15 @@ Selenium runs automated tests
 Image pushed to registry → deployed to Kubernetes
 Prometheus & Grafana monitor application health
 Instructor verifies successful deployment & monitoring
-
+```
 # Required tools and packages in your system for testing 
+```
 Java source code url 
 Java jdk17 or higher
 Set java home 
 Visual studio with java extension and Live Server
 Tomcat11
-
+```
 # Manual test the Source code is OK
  
 ![Maualtest_1](image_folder/manualtest_1.png)
