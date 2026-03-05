@@ -85,6 +85,7 @@ git push origin developer
 # Phase 2: Build Automation
 - Configure Maven for automated build of Spring Boot applications.
 &nbsp;&nbsp;&nbsp;&nbsp;Use pom.xml to create build in maven
+|---------------|--------------------------------|-------------------|
 |Phase	|Command		|Purpose                                     |
 |---------------|--------------------------------|-------------------|
 |Validate|mvn validate	|Validate project structure                  |
