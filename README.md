@@ -87,7 +87,7 @@ git push origin developer
 	 
 	
 • Generate Dockerfiles for each microservice.
- 
+ ![docker_build](image_folder/docker_build.PNG)
 # Phase 3: Containerization
 • Create Docker images using Dockerfiles.
 
