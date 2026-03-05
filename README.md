@@ -84,13 +84,24 @@ git push origin developer
   
 # Phase 2: Build Automation
 • Configure Maven for automated build of Spring Boot applications.
-	 
+    Use pom.xml to create build in maven
+|Phase	|Command		|Purpose                                     |
+|---------------|--------------------------------|-------------------|
+|Validate|mvn validate	|Validate project structure                  |
+|Compile	|mvn compile 	|Compile source code                     |
+|Test	|mvn test		|Run unit tests                              |
+|Package	|mvn package 	|Create JAR/WAR file                     |
+|Verify	|mvn verify		|Run checks on package                       |
+|Install	|mvn install 	|Install package to local repository     |
+|Deploy	|mvn deploy		|Deploy to remote repository                 |
+																	 |
 	
 • Generate Dockerfiles for each microservice.
  ![docker_build](image_folder/docker_build.PNG)
  Using this Dockerfile we can avoids committing .jar/.war files to any repository.
  The .war/.jar files are created automatically during the build process using Apache Maven or Gradle.
  It help to manage dependencies via tools (Maven/Gradle) instead of storing binaries in the repo.
+ 
 # Phase 3: Containerization
 • Create Docker images using Dockerfiles.
 
