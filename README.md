@@ -88,9 +88,9 @@ git push origin developer
 	
 • Generate Dockerfiles for each microservice.
  ![docker_build](image_folder/docker_build.PNG)
-    Using this Dockerfile we can avoids committing .jar/.war files to any repository.
-    The .war/.jar files are created automatically during the build process using Apache Maven or Gradle.
-    It help to manage dependencies via tools (Maven/Gradle) instead of storing binaries in the repo.
+ Using this Dockerfile we can avoids committing .jar/.war files to any repository.
+ The .war/.jar files are created automatically during the build process using Apache Maven or Gradle.
+ It help to manage dependencies via tools (Maven/Gradle) instead of storing binaries in the repo.
 # Phase 3: Containerization
 • Create Docker images using Dockerfiles.
 
