@@ -105,6 +105,7 @@ git push origin developer
 - Create Docker images using Dockerfiles.
 
 - Push images to a central repository (e.g., Docker Hub or GitHub Container Registry).
+```
 pipeline {
     agent any
 
@@ -162,6 +163,7 @@ pipeline {
         }
     }
 }
+```
 # Phase 4: Infrastructure Automation
 • Use Ansible to:
   - Install Docker, Kubernetes, and dependencies on servers.
