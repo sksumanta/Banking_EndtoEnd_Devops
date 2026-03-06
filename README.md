@@ -50,7 +50,9 @@ Now we can access the modules / functionality from the url
 
 # CI-CD STEPS
 # =============================
-# Phase 1: Project Setup & Source Code Management
+# Phase 1: Configure Jenkins and Ansible server
+
+# Phase 2: Project Setup & Source Code Management
 
 - Initialize Git repository for each microservice.
  ![push_code_to_git](image_folder/push_code_to_git.png)
@@ -87,7 +89,7 @@ git push origin developer
 ```
 ![push_code_to_git_2](image_folder/push_code_to_git_2.png)
   
-# Phase 2: Build Automation
+# Phase 3: Build Automation
 - Configure Maven for automated build of Spring Boot applications.
 &nbsp;&nbsp;&nbsp;&nbsp;Use pom.xml to create build in maven
 
@@ -108,9 +110,11 @@ git push origin developer
  The .war/.jar files are created automatically during the build process using Apache Maven or Gradle.
  It help to manage dependencies via tools (Maven/Gradle) instead of storing binaries in the repo.
  ```
-# Phase 3: Containerization
+# Phase 4: Containerization
 - Create Docker images using Dockerfiles.
-
+```
+docker build -t $DOCKER_HUB/$IMAGE_NAME:$IMAGE_TAG -f deposit-service/Dockerfile deposit-service
+```
 - Push images to a central repository (e.g., Docker Hub or GitHub Container Registry).
 ```
 pipeline {
@@ -171,13 +175,13 @@ pipeline {
     }
 }
 ```
-# Phase 4: Infrastructure Automation
+# Phase 5: Infrastructure Automation
 • Use Ansible to:
   - Install Docker, Kubernetes, and dependencies on servers.
   - Configure nodes, clusters, and load balancers automatically.
   - Manage environment variables consistently.
 
-# Phase 5: CI/CD Pipeline Setup
+# Phase 6: CI/CD Pipeline Setup
 • Configure Jenkinsfile or GitHub Actions Workflow:
 i. Checkout Code
 ii. Build with Maven
@@ -188,11 +192,11 @@ vi. Deploy to Kubernetes Cluster
 vii. Run Selenium Integration Tests
 viii. Promote build to next environment (UAT → Production)
 
-# Phase 6: Testing Automation
+# Phase 7: Testing Automation
 • Use Selenium to test the integration between services.
 • Trigger automated tests post-deployment in the CI/CD pipeline.
 
-# Phase 7: Monitoring Setup
+# Phase 8: Monitoring Setup
 • Integrate Prometheus to scrape metrics from Spring Boot apps and Kubernetes.
 • Create Grafana Dashboards for:
   - Application health
@@ -200,7 +204,7 @@ viii. Promote build to next environment (UAT → Production)
   - API response times
   - Error rates
 
-# Phase 8: Deployment Validation
+# Phase 9: Deployment Validation
 • Test application consistency across all environments.
 • Validate rollback and recovery processes.
 
