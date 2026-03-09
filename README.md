@@ -187,7 +187,7 @@ Let’s consider 3-node Kubernetes cluster on AWS EC2 using Ansible to manage th
 ![ansible_for_k8s](image_folder/ansible_for_k8s.PNG)  
 
 ```
-ansible_for_k8s/
+ansible_for_k8s_configuration/
 │
 ├── hosts.yaml        → It has the servers list, which servers need to configure
 │
