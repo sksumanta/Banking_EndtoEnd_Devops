@@ -181,6 +181,48 @@ pipeline {
   - Configure nodes, clusters, and load balancers automatically.
   - Manage environment variables consistently.
 
+```
+Let’s consider 3-node Kubernetes cluster on AWS EC2 using Ansible to manage this Spring Boot microservices deployment.
+```
+![ansible_for_k8s](image_folder/ansible_for_k8s.PNG)  
+
+```
+ansible_for_k8s/
+│
+├── hosts.yaml        → It has the servers list, which servers need to configure
+│
+├── ansible.cfg       → Ansible configuration file (inventory path, ssh settings)
+│
+├── playbooks/        → Contains main playbooks to run the automation
+│   │
+│   ├── install_dependencies.yml   → Installs required packages like Docker, kubeadm, kubelet
+│   │
+│   ├── setup_master.yml           → Configures Kubernetes master node
+│   │
+│   └── setup_workers.yml          → Configures Kubernetes worker nodes
+│
+├── roles/            → Reusable Ansible roles for organized automation
+│   │
+│   ├── common/       → Common configurations applied to all nodes
+│   │   └── tasks/main.yml
+│   │
+│   ├── docker/       → Installs and configures Docker
+│   │   └── tasks/main.yml
+│   │
+│   ├── kubernetes/   → Installs Kubernetes components (kubeadm, kubelet, kubectl)
+│   │   └── tasks/main.yml
+│   │
+│   ├── master/       → Tasks specific to Kubernetes master node
+│   │   └── tasks/main.yml
+│   │
+│   └── worker/       → Tasks specific to Kubernetes worker nodes
+│       └── tasks/main.yml
+│
+└── group_vars/       → Stores variables used across all nodes
+    │
+    └── all.yml       → This ensures consistent configuration across nodes
+	|
+```
 # Phase 6: CI/CD Pipeline Setup
 • Configure Jenkinsfile or GitHub Actions Workflow:
 i. Checkout Code
