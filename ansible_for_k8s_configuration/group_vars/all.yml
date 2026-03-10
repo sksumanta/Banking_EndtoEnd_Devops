@@ -1,0 +1,11 @@
+kubernetes_version: "1.29.0"
+pod_network_cidr: "192.168.0.0/16"
+
+docker_version: "5:24.0.7-1~ubuntu.22.04~jammy"
+
+cluster_name: banking-k8s
+
+microservices:
+  - customer-care
+  - deposit
+  - withdraw

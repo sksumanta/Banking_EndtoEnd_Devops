@@ -1,0 +1,20 @@
+
+# Master Node Setup
+
+- name: Initialize Kubernetes Master
+  command: kubeadm init --pod-network-cidr={{ pod_network_cidr }}
+  register: kubeadm_output
+
+- name: Create kube directory
+  file:
+    path: /home/ubuntu/.kube
+    state: directory
+
+- name: Copy admin.conf
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: /home/ubuntu/.kube/config
+    remote_src: yes
+
+- name: Install Calico network
+  command: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml

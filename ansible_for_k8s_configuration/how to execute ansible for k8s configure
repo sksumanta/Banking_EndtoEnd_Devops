@@ -1,0 +1,6 @@
+
+ansible-playbook -i hosts.yaml playbooks/install_dependencies.yml
+
+ansible-playbook -i hosts.yaml playbooks/setup_master.yml
+
+ansible-playbook -i hosts.yaml playbooks/setup_workers.yml

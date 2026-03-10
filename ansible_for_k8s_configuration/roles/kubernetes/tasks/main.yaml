@@ -1,0 +1,53 @@
+
+# Kubernetes Installation
+
+---
+- name: Install Kubernetes securely using internal key via SFTP
+  hosts: all
+  become: yes
+  vars:
+    sftp_script_dir: "/mypath/sftpcopy"
+    file_name: "kubernetes-archive-keyring.gpg"
+    dest_dir: "/usr/share/keyrings"
+  tasks:
+
+    - name: Ensure destination directory exists
+      ansible.builtin.file:
+        path: "{{ dest_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Fetch internal Kubernetes GPG key via SFTP using shell script
+      ansible.builtin.command: >
+        sudo {{ sftp_script_dir }}/copy_file_from_sftp_server.sh
+        {{ file_name }} {{ dest_dir }}
+      args:
+        chdir: "{{ sftp_script_dir }}"
+
+    - name: Ensure correct permissions on the key
+      file:
+        path: /usr/share/keyrings/kubernetes-archive-keyring.gpg
+        mode: '0644'
+
+    - name: Add Kubernetes apt repository
+      apt_repository:
+        repo: "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main"
+        state: present
+        filename: kubernetes
+
+    - name: Install Kubernetes packages
+      apt:
+        name:
+          - kubelet
+          - kubeadm
+          - kubectl
+        state: present
+        update_cache: yes
+
+    - name: Hold Kubernetes packages to prevent unintended upgrades
+      apt:
+        name:
+          - kubelet
+          - kubeadm
+          - kubectl
+        state: hold

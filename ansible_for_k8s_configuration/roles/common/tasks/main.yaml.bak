@@ -1,0 +1,40 @@
+			#Basic System Setup
+#Swap is disk space used as extra memory when RAM is full.
+	#For and example 
+		#RAM = 8GB
+		#Swap = 2GB
+		#If RAM fills up → system moves data to disk.
+#But Kubernetes require swap to be disabled because:
+#Swap causes unpredictable memory behavior
+#Kubernetes needs accurate memory scheduling
+#Pods could behave incorrectly if memory is swapped to disk
+
+#################################################################
+- name: Disable swap
+  command: swapoff -a
+
+- name: Remove swap from fstab
+  replace:
+    path: /etc/fstab
+    regexp: '^.*swap.*$'
+    replace: ''
+	
+- name: Check if master key exists
+  stat:
+    path: /my_path/master.key
+  register: master_key
+
+- name: Execute ca certificate installation script
+  command: /my_path/install_cert.sh
+  when: master_key.stat.exists
+  
+- name: Install dependencies
+  apt:
+    name:
+      - apt-transport-https
+      - curl
+      - gnupg
+      - lsb-release
+    state: present
+    update_cache: yes
+	
