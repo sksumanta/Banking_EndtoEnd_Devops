@@ -223,7 +223,11 @@ ansible_for_k8s_configuration/
     └── all.yml       → This ensures consistent configuration across nodes
 	|
 ```
-# Phase 6: CI/CD Pipeline Setup
+# Phase 6: Pipeline to configure k8s server.
+
+# Phase 7: Create deployment and service for k8s
+
+# Phase 8: CI/CD Pipeline Setup
 • Configure Jenkinsfile or GitHub Actions Workflow:
 ```
 i. Checkout Code
@@ -235,11 +239,11 @@ vi. Deploy to Kubernetes Cluster
 vii. Run Selenium Integration Tests
 viii. Promote build to next environment (UAT → Production)
 ```
-# Phase 7: Testing Automation
+# Phase 9: Testing Automation
 • Use Selenium to test the integration between services.
 • Trigger automated tests post-deployment in the CI/CD pipeline.
 
-# Phase 8: Monitoring Setup
+# Phase 10: Monitoring Setup
 • Integrate Prometheus to scrape metrics from Spring Boot apps and Kubernetes.
 • Create Grafana Dashboards for:
   - Application health
@@ -247,7 +251,7 @@ viii. Promote build to next environment (UAT → Production)
   - API response times
   - Error rates
 
-# Phase 9: Deployment Validation
+# Phase 11: Deployment Validation
 • Test application consistency across all environments.
 • Validate rollback and recovery processes.
 
