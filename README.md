@@ -224,7 +224,66 @@ ansible_for_k8s_configuration/
 	|
 ```
 # Phase 6: Pipeline to configure k8s server.
+```
+pipeline {
+    agent any
 
+    environment {
+        ANSIBLE_SERVER = 'ansibleuser@ansible-server'  // Ansible control node
+    }
+
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                sshagent(['ansible_ssh_key']) {
+                    sh """
+                        ssh -o StrictHostKeyChecking=no ${ANSIBLE_SERVER} '
+                        cd /home/ansible/ansible-k8s && \
+                        ansible-playbook -i hosts playbooks/install_dependencies.yml
+                        '
+                    """
+                }
+            }
+        }
+
+        stage('Setup Kubernetes Master') {
+            steps {
+                sshagent(['ansible_ssh_key']) {
+                    sh """
+                        ssh -o StrictHostKeyChecking=no ${ANSIBLE_SERVER} '
+                        cd /home/ansible/ansible-k8s && \
+                        ansible-playbook -i hosts playbooks/setup_master.yml
+                        '
+                    """
+                }
+            }
+        }
+
+        stage('Setup Kubernetes Workers') {
+            steps {
+                sshagent(['ansible_ssh_key']) {
+                    sh """
+                        ssh -o StrictHostKeyChecking=no ${ANSIBLE_SERVER} '
+                        cd /home/ansible/ansible-k8s && \
+                        ansible-playbook -i hosts playbooks/setup_workers.yml
+                        '
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Kubernetes cluster deployed successfully!'
+        }
+        failure {
+            echo 'Deployment failed! Check logs for details.'
+        }
+    }
+}
+
+```
 # Phase 7: Create deployment and service for k8s
 
 # Phase 8: CI/CD Pipeline Setup
