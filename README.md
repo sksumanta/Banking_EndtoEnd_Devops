@@ -225,6 +225,7 @@ ansible_for_k8s_configuration/
 ```
 # Phase 6: CI/CD Pipeline Setup
 • Configure Jenkinsfile or GitHub Actions Workflow:
+```
 i. Checkout Code
 ii. Build with Maven
 iii. Run Unit Tests
@@ -233,7 +234,7 @@ v. Push Image to Registry
 vi. Deploy to Kubernetes Cluster
 vii. Run Selenium Integration Tests
 viii. Promote build to next environment (UAT → Production)
-
+```
 # Phase 7: Testing Automation
 • Use Selenium to test the integration between services.
 • Trigger automated tests post-deployment in the CI/CD pipeline.
