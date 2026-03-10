@@ -212,10 +212,10 @@ ansible_for_k8s_configuration/
 │   ├── kubernetes/   → Installs Kubernetes components (kubeadm, kubelet, kubectl)
 │   │   └── tasks/main.yml
 │   │
-│   ├── master/       → Tasks specific to Kubernetes master node
+│   ├── master_node/       → Tasks specific to Kubernetes master node
 │   │   └── tasks/main.yml
 │   │
-│   └── worker/       → Tasks specific to Kubernetes worker nodes
+│   └── worker_node/       → Tasks specific to Kubernetes worker nodes
 │       └── tasks/main.yml
 │
 └── group_vars/       → Stores variables used across all nodes
