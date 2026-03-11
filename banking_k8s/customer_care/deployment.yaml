@@ -1,0 +1,55 @@
+#	deployment.yaml
+#	================	
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-care
+  labels:
+    app: customer-care
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: customer-care
+  template:
+    metadata:
+      labels:
+        app: customer-care
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: "kubernetes.io/instance-type"
+                    operator: In
+                    values:
+                      - t3.medium
+                      - t3.large
+      containers:
+        - name: customer-care
+          image: yourdockerhub/customer_care:latest
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: customer-care-config
+            - secretRef:
+                name: customer-care-secret
+          livenessProbe:
+            httpGet:
+              path: /customer-care/customer-care
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 15
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /customer-care/customer-care
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+      restartPolicy: Always
+      
+      

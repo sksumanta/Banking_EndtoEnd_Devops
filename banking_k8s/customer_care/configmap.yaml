@@ -1,0 +1,11 @@
+#configmap.yaml
+#==========================
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: customer-care-config
+data:
+  SPRING_PROFILES_ACTIVE: "prod"
+  DEPOSIT_API_URL: "http://deposit-service:8080"
+  WITHDRAW_API_URL: "http://withdraw-service:8080"

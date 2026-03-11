@@ -1,0 +1,43 @@
+#	ingress.yaml
+#	=============
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: banking-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: banking.example.com
+      http:
+        paths:
+          - path: /customer-care
+            pathType: Prefix
+            backend:
+              service:
+                name: customer-care
+                port:
+                  number: 80
+          - path: /deposit
+            pathType: Prefix
+            backend:
+              service:
+                name: deposit
+                port:
+                  number: 80
+          - path: /withdraw
+            pathType: Prefix
+            backend:
+              service:
+                name: withdraw
+                port:
+                  number: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 80
+				  
