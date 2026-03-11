@@ -327,13 +327,14 @@ viii. Promote build to next environment (UAT → Production)
 • Trigger automated tests post-deployment in the CI/CD pipeline.
 ```
 # Phase 10: Monitoring Setup
+```
 • Integrate Prometheus to scrape metrics from Spring Boot apps and Kubernetes.
 • Create Grafana Dashboards for:
   - Application health
   - Pod status
   - API response times
   - Error rates
-
+```
 # Phase 11: Deployment Validation
 • Test application consistency across all environments.
 • Validate rollback and recovery processes.
