@@ -286,12 +286,12 @@ pipeline {
 ```
 # Phase 7: Create deployment and service for k8s
 ```
-. Each Spring Boot Microservices service (customer_care, deposit, withdraw) runs in its own Deployment.
-. Frontend: Angular/React frontend calling the backend microservices via Service URLs.
-. For Networking via ClusterIP Services exposed internally and via LoadBalancer service for frontend to access externally.
-. Use PersistentVolumeClaims (PVC) if microservices need persistent storage.
-. To use Environment variables, DB credentials, configs we can use Secrets & ConfigMaps.
-. For routing frontend & backend we can use Ingress.
+• Each Spring Boot Microservices service (customer_care, deposit, withdraw) runs in its own Deployment.
+• Frontend: Angular/React frontend calling the backend microservices via Service URLs.
+• For Networking via ClusterIP Services exposed internally and via LoadBalancer service for frontend to access externally.
+• Use PersistentVolumeClaims (PVC) if microservices need persistent storage.
+• To use Environment variables, DB credentials, configs we can use Secrets & ConfigMaps.
+• For routing frontend & backend we can use Ingress.
 
 banking_k8s/
 ├─ customer_care/
@@ -322,9 +322,10 @@ vii. Run Selenium Integration Tests
 viii. Promote build to next environment (UAT → Production)
 ```
 # Phase 9: Testing Automation
+```
 • Use Selenium to test the integration between services.
 • Trigger automated tests post-deployment in the CI/CD pipeline.
-
+```
 # Phase 10: Monitoring Setup
 • Integrate Prometheus to scrape metrics from Spring Boot apps and Kubernetes.
 • Create Grafana Dashboards for:
