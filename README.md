@@ -285,7 +285,30 @@ pipeline {
 
 ```
 # Phase 7: Create deployment and service for k8s
+```
+. Each Spring Boot Microservices service (customer_care, deposit, withdraw) runs in its own Deployment.
+. Frontend: Angular/React frontend calling the backend microservices via Service URLs.
+. For Networking via ClusterIP Services exposed internally and via LoadBalancer service for frontend to access externally.
+. Use PersistentVolumeClaims (PVC) if microservices need persistent storage.
+. To use Environment variables, DB credentials, configs we can use Secrets & ConfigMaps.
+. For routing frontend & backend we can use Ingress.
 
+banking_k8s/
+├─ customer_care/
+│  ├─ deployment.yaml
+│  ├─ service.yaml
+│  ├─ configmap.yaml
+│  ├─ secret.yaml
+│  ├─ pv.yaml
+│  └─ pvc.yaml
+├─ deposit/
+│  └─ ...
+├─ withdraw/
+│  └─ ...
+├─ frontend/
+│  └─ ...
+└─ ingress.yaml
+```
 # Phase 8: CI/CD Pipeline Setup
 • Configure Jenkinsfile or GitHub Actions Workflow:
 ```
