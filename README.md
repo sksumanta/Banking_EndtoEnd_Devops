@@ -306,7 +306,7 @@ banking_k8s/
 ├─ withdraw/
 │  └─ ...
 ├─ frontend/
-│  └─ ...
+│  └─ ...		(no PV needed if stateless)
 └─ ingress.yaml
 ```
 # Phase 8: CI/CD Pipeline Setup
