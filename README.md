@@ -311,6 +311,10 @@ banking_k8s/
 ```
 # Phase 8: Helm chart
 ```
+. Helm chart is essentially a package manager for Kubernetes applications
+. It Parameterize the k8s code so the same application in different environments (dev, staging, production) run effectivly by changing values in the parameter instead of editing manifests
+. Easier Upgrade and If a deployment goes wrong, you can rollback to a previous version.
+
 banking-helm/
 |             
 ├── values.yaml                 # Global default values (used by umbrella chart)
