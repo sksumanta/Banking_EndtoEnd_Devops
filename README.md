@@ -399,7 +399,7 @@ viii. Promote build to next environment (UAT → Production)
 4. Ansible Playbooks – Scripts to automate infrastructure and configuration setup
 5. Selenium Test Scripts – Automated UI and integration test suite
 6. Kubernetes Deployment Files – YAML manifests for pods, services, and ingress
-7. Helm chart - 
+7. Helm chart - Deploy k8s in structured way for different environments (dev, qa, prod)
 8. Monitoring Dashboards – Prometheus + Grafana visualization setup
 
 
