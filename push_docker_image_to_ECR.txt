@@ -1,0 +1,42 @@
+
+
+#	The IAM role attached to Jenkins EC2 must allow for ECR:
+
+ecr:GetAuthorizationToken
+ecr:BatchCheckLayerAvailability
+ecr:PutImage
+ecr:InitiateLayerUpload
+ecr:UploadLayerPart
+ecr:CompleteLayerUpload
+
+
+#	Stage use to push image to ECR
+#	=================================
+	
+    environment {
+        AWS_REGION = "ap-south-1"
+        AWS_ACCOUNT_ID = "123456789012"
+        IMAGE_NAME = "payment-service"
+        IMAGE_TAG = "${BUILD_NUMBER}"
+        ECR_REPO = "payment-service"
+        ECR_URL = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+    }
+
+  stage('Login to ECR') {
+            steps {
+                sh '''
+                aws ecr get-login-password --region $AWS_REGION \
+                | docker login --username AWS --password-stdin $ECR_URL
+                '''
+            }
+        }
+
+  stage('Push Image') {
+            steps {
+                sh '''
+                docker push $ECR_URL/$ECR_REPO:$IMAGE_TAG
+                '''
+            }
+        }
+		
+		
