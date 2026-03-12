@@ -309,7 +309,60 @@ banking_k8s/
 │  └─ ...		(no PV needed if stateless)
 └─ ingress.yaml
 ```
-# Phase 8: CI/CD Pipeline Setup
+# Phase 8: Helm chart
+```
+banking-helm/
+|             
+├── values.yaml                 # Global default values (used by umbrella chart)
+├── charts/                     
+│   ├── common/                 # Shared resources (secrets, ingress, configmaps)
+│   │   ├── Chart.yaml
+│   │   ├── values.yaml
+│   │   └── templates/
+│   │       ├── secret.yaml
+│   │       ├── ingress.yaml
+│   │       └── configmap.yaml
+│   ├── customer-care/          # Customer Care microservice
+│   │   ├── Chart.yaml
+│   │   ├── values.yaml
+│   │   └── templates/
+│   │       ├── deployment.yaml
+│   │       ├── service.yaml
+│   │       ├── hpa.yaml
+│   │       ├── pvc.yaml
+│   │       └── configmap.yaml
+│   ├── deposit/                # Deposit microservice
+│   │   ├── Chart.yaml
+│   │   ├── values.yaml
+│   │   └── templates/
+│   │       ├── deployment.yaml
+│   │       ├── service.yaml
+│   │       ├── hpa.yaml
+│   │       ├── pvc.yaml
+│   │       └── configmap.yaml
+│   ├── withdraw/               # Withdraw microservice
+│   │   ├── Chart.yaml
+│   │   ├── values.yaml
+│   │   └── templates/
+│   │       ├── deployment.yaml
+│   │       ├── service.yaml
+│   │       ├── hpa.yaml
+│   │       └── configmap.yaml
+│   └── frontend/               # Frontend microservice
+│       ├── Chart.yaml
+│       ├── values.yaml
+│       └── templates/
+│           ├── deployment.yaml
+│           ├── service.yaml
+│           ├── hpa.yaml
+│           └── ingress.yaml
+├── environments/               # Environment-specific values
+│   ├── dev.yaml
+│   ├── staging.yaml
+│   └── prod.yaml
+
+```
+# Phase 9: CI/CD Pipeline Setup
 • Configure Jenkinsfile or GitHub Actions Workflow:
 ```
 i. Checkout Code
@@ -321,12 +374,12 @@ vi. Deploy to Kubernetes Cluster
 vii. Run Selenium Integration Tests
 viii. Promote build to next environment (UAT → Production)
 ```
-# Phase 9: Testing Automation
+# Phase 10: Testing Automation
 ```
 • Use Selenium to test the integration between services.
 • Trigger automated tests post-deployment in the CI/CD pipeline.
 ```
-# Phase 10: Monitoring Setup
+# Phase 11: Monitoring Setup
 ```
 • Integrate Prometheus to scrape metrics from Spring Boot apps and Kubernetes.
 • Create Grafana Dashboards for:
@@ -335,7 +388,7 @@ viii. Promote build to next environment (UAT → Production)
   - API response times
   - Error rates
 ```
-# Phase 11: Deployment Validation
+# Phase 12: Deployment Validation
 • Test application consistency across all environments.
 • Validate rollback and recovery processes.
 
@@ -346,6 +399,7 @@ viii. Promote build to next environment (UAT → Production)
 4. Ansible Playbooks – Scripts to automate infrastructure and configuration setup
 5. Selenium Test Scripts – Automated UI and integration test suite
 6. Kubernetes Deployment Files – YAML manifests for pods, services, and ingress
-7. Monitoring Dashboards – Prometheus + Grafana visualization setup
+7. Helm chart - 
+8. Monitoring Dashboards – Prometheus + Grafana visualization setup
 
 
