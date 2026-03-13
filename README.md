@@ -1,6 +1,8 @@
 # Banking_EndtoEnd_Devops
 This is a sample banking end to end project using jenkins, git , maven , docker , ansible , k8s , terraform 
 
+In github sksumanta/sample_banking_devops.git is the sample project repo
+
 # Learning Outcomes
 ```
 Understand the microservices architecture
