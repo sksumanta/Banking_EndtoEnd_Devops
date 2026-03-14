@@ -377,7 +377,13 @@ banking-helm/
     ├── dev.yaml
     ├── staging.yaml
     └── prod.yaml
-
+```
+```
+helm upgrade --install banking ./banking-helm \
+-f environments/prod.yaml \
+--atomic \
+--wait \
+--timeout 5m
 ```
 # Phase 9: CI/CD Pipeline Setup
 • Configure Jenkinsfile or GitHub Actions Workflow:
