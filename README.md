@@ -317,58 +317,63 @@ banking_k8s/
 . It Parameterize the k8s code so the same application in different environments (dev, staging, production) run effectivly by changing values in the parameter instead of editing manifests
 . Easier Upgrade and If a deployment goes wrong, you can rollback to a previous version.
 
-banking-helm/                     
-├── Chart.yaml                     # Umbrella chart metadata (name, version, dependencies)
-├── values.yaml                    # Global defaults for all subcharts
-├── charts/                        # Subcharts directory
-│   ├── common/                    # Shared resources (secrets, ingress, configmaps)
+banking-helm/
+│
+├── Chart.yaml						# Umbrella chart metadata (name, version, dependencies)
+├── values.yaml						# Global default values (used by umbrella chart)
+├── .helmignore
+│
+├── charts/							# Subcharts directory
+│   |
+│   ├── common/                     # Shared resources (secrets, ingress, configmaps)
+│   │   │
 │   │   ├── Chart.yaml
 │   │   ├── values.yaml
+│   │   │
 │   │   └── templates/
+│   │       │
+│   │       ├── _helpers.tpl        # Shared helpers used by all services
+│   │       ├── configmap.yaml
 │   │       ├── secret.yaml
-│   │       ├── ingress.yaml
-│   │       ├── configmap.yaml
-│   │       └── _helpers.tpl
-│   ├── customer-care/             # Customer Care microservice
+│   │       └── ingress.yaml
+│   │
+│   ├── customer-care/				# Customer Care microservice
+│   │   │
 │   │   ├── Chart.yaml
 │   │   ├── values.yaml
+│   │   │
 │   │   └── templates/
+│   │       │
+│   │       ├── _helpers.tpl
 │   │       ├── deployment.yaml
 │   │       ├── service.yaml
 │   │       ├── hpa.yaml
 │   │       ├── pvc.yaml
-│   │       ├── configmap.yaml
-│   │       └── _helpers.tpl
-│   ├── deposit/                   # Deposit microservice
-│   │   ├── Chart.yaml
-│   │   ├── values.yaml
-│   │   └── templates/
-│   │       ├── deployment.yaml
-│   │       ├── service.yaml
-│   │       ├── hpa.yaml
-│   │       ├── pvc.yaml
-│   │       ├── configmap.yaml
-│   │       └── _helpers.tpl
-│   ├── withdraw/                  # Withdraw microservice
-│   │   ├── Chart.yaml
-│   │   ├── values.yaml
-│   │   └── templates/
-│   │       ├── deployment.yaml
-│   │       ├── service.yaml
-│   │       ├── hpa.yaml
-│   │       ├── pvc.yaml
-│   │       ├── configmap.yaml
-│   │       └── _helpers.tpl
-│   └── frontend/                  # Frontend microservice
+│   │       └── configmap.yaml
+│   │
+│   ├── deposit/
+│   |   │
+│	|	:
+│   │
+│   ├── withdraw/
+│   |   │
+│	|	:
+│   │
+│   └── frontend/					# Frontend microservice
+│       │
 │       ├── Chart.yaml
 │       ├── values.yaml
+│       │
 │       └── templates/
+│           │
+│           ├── _helpers.tpl
 │           ├── deployment.yaml
 │           ├── service.yaml
 │           ├── hpa.yaml
-│           ├── ingress.yaml
-│           └── _helpers.tpl
-└── environments/                  # Environment-specific overrides
+│           └── ingress.yaml
+│
+└── environments/                   # Environment specific overrides
+    │
     ├── dev.yaml
     ├── staging.yaml
     └── prod.yaml
