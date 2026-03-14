@@ -8,6 +8,8 @@ README.md
 *.log
 
 
+## how to Install using helm
+
 # helm dependency update
 
 # helm install banking ./banking-helm -f environments/dev.yaml
