@@ -352,9 +352,9 @@ banking-helm/
 │   │       └── configmap.yaml
 │   │
 │   ├── deposit/
-│   |   │
-│	|	:
-│   │
+│   |   │					# Deployment, Service, HPA, ConfigMap, PVC are structurally the same; only values change
+│	|	:					# For values.yaml Image repository, service port, replicas, ingress host
+│   │						# Name, description, appVersion, keywords will change in Chart.yaml
 │   ├── withdraw/
 │   |   │
 │	|	:
@@ -362,10 +362,10 @@ banking-helm/
 │   └── frontend/					# Frontend microservice
 │       │
 │       ├── Chart.yaml
-│       ├── values.yaml
-│       │
-│       └── templates/
-│           │
+│       ├── values.yaml				# NOTE -- Ingress – only frontend usually needs an Ingress; customer-care, deposit, 
+│       │							# withdraw can skip ingress. Keep ingress.enabled: false for backend microservices. 
+│       └── templates/				# Service Ports – frontend is usually 80 or 443, backend microservices 
+│           │						# can be different (8080, 8081, etc.).
 │           ├── _helpers.tpl
 │           ├── deployment.yaml
 │           ├── service.yaml
