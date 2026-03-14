@@ -1,0 +1,25 @@
+# banking-helm/values.yaml
+# ============================
+
+global:
+  imagePullPolicy: IfNotPresent
+
+  registry: docker.io
+
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
+
+  ingress:
+    enabled: true
+    className: nginx
+    host: banking.example.com
+    tlsSecret: banking-tls
+
+  database:
+    host: postgres
+    port: 5432

@@ -11,7 +11,7 @@ appVersion: "1.0"
 dependencies:
   - name: common
     version: 1.0.0
-    repository: "file://charts/common"
+    repository: "file://charts/common"        # or  https://mycompany.com/charts/common-1.0.0.tgz for company specific
 
   - name: customer-care
     version: 1.0.0
