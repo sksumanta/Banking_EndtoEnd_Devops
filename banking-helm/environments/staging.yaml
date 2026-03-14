@@ -1,0 +1,6 @@
+# environments/staging.yaml
+# ==================================
+
+global:
+  ingress:
+    host: staging.banking.example.com

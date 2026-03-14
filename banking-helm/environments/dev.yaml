@@ -1,0 +1,7 @@
+# 	environments/dev.yaml
+#	==========================
+
+
+global:
+  ingress:
+    host: dev.banking.example.com

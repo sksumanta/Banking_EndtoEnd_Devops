@@ -1,0 +1,7 @@
+# environments/prod.yaml
+#	==========================
+
+
+global:
+  ingress:
+    host: banking.example.com

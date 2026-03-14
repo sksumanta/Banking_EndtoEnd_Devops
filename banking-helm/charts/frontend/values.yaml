@@ -1,0 +1,32 @@
+# frontend values.yaml
+# ===========================
+
+
+replicaCount: 2
+
+image:
+  repository: myrepo/frontend
+  tag: "1.0"
+  pullPolicy: IfNotPresent
+
+service:
+  port: 80
+
+ingress:
+  enabled: true
+  className: nginx
+  host: frontend.banking.example.com
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70

@@ -1,0 +1,15 @@
+# .helmignore
+
+
+.git/
+.gitignore
+README.md
+*.tgz
+*.log
+
+
+# ## how to Install 
+
+# helm dependency update
+
+# helm install banking ./banking-helm -f environments/dev.yaml
