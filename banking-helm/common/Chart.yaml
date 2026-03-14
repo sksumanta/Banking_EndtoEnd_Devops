@@ -1,0 +1,8 @@
+# charts/common/Chart.yaml
+# =========================
+
+apiVersion: v2
+name: common
+description: Shared resources for banking platform
+type: library
+version: 1.0.0
